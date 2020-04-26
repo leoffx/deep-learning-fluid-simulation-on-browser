@@ -38,8 +38,8 @@ async function animate() {
 }
 
 async function loadModels() {
-  const ENCODER_URL = "http://localhost:3000/encoder/model.json";
-  const DECODER_URL = "http://localhost:3000/decoder/model.json";
+  const ENCODER_URL = "encoder/model.json";
+  const DECODER_URL = "decoder/model.json";
   encoder = await tf.loadGraphModel(ENCODER_URL);
   decoder = await tf.loadGraphModel(DECODER_URL);
 
