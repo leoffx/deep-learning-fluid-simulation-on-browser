@@ -5,7 +5,7 @@ const drawing = document.querySelector("#drawing");
 const drawingctx = drawing.getContext("2d");
 
 //let [width, height] = [window.innerWidth, window.innerHeight];
-let [height, width] = [128, 128];
+let [height, width] = [200, 200];
 let [scaleX, scaleY] = [window.innerWidth / width, window.innerHeight / height];
 
 [simulation.style.width, simulation.style.height] = [
