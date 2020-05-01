@@ -5,7 +5,7 @@ const drawing = document.querySelector("#drawing");
 const drawingctx = drawing.getContext("2d");
 
 //let [width, height] = [window.innerWidth, window.innerHeight];
-let [height, width] = [200, 200];
+let [height, width] = [100, 100];
 let [scaleX, scaleY] = [window.innerWidth / width, window.innerHeight / height];
 
 [simulation.style.width, simulation.style.height] = [
@@ -29,8 +29,9 @@ let compressed, b_mul, b_add, absVel, temp;
 async function animate() {
   [absVel, compressed] = calculateNextStep();
 
-  await tf.browser.toPixels(absVel, simulation);
-  tf.dispose(absVel);
+  new Promise(() => {
+    tf.browser.toPixels(absVel, simulation);
+  }).then(() => tf.dispose(absVel));
 
   await new Promise((r) => setTimeout(r, 13));
   //console.log("numTensors (outside tidy): " + tf.memory().numTensors);
