@@ -1,4 +1,4 @@
-# Deep Learning Fluid Simulation on Browser
+# Deep Learning Fluid Simulation on Browser (WIP)
 
 Model trained with the code from [this repository](https://github.com/leoffx/deep-learning-model-for-computational-fluid-dynamics). 
 
