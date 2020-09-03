@@ -1,8 +1,8 @@
 canvas {
   position: absolute;
   left: 50%;
-  margin-left: -150px;
+  margin-left: -250px;
   top: 50%;
-  margin-top: -250px;
+  margin-top: -150px;
   display: block;
 }
