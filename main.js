@@ -1,12 +1,12 @@
-const simulation = document.querySelector("#simulation");
-const simulationctx = simulation.getContext("2d");
+const simulation = document.querySelector('#simulation');
+const simulationctx = simulation.getContext('2d');
 
-const drawing = document.querySelector("#drawing");
-const drawingctx = drawing.getContext("2d");
+const drawing = document.querySelector('#drawing');
+const drawingctx = drawing.getContext('2d');
 
 //let [width, height] = [window.innerWidth, window.innerHeight];
 let [height, width] = [100, 100];
-let [scaleX, scaleY] = [window.innerWidth / width, window.innerHeight / height];
+let [scaleX, scaleY] = [500 / width, 300 / height];
 
 [simulation.style.width, simulation.style.height] = [
   `${width * scaleX}px`,
@@ -39,8 +39,8 @@ async function animate() {
 }
 
 async function loadModels() {
-  const ENCODER_URL = "encoder/model.json";
-  const DECODER_URL = "decoder/model.json";
+  const ENCODER_URL = 'encoder/model.json';
+  const DECODER_URL = 'decoder/model.json';
   encoder = await tf.loadGraphModel(ENCODER_URL);
   decoder = await tf.loadGraphModel(DECODER_URL);
 
@@ -80,9 +80,9 @@ function draw(e) {
   if (!painting) return;
 
   drawingctx.lineWidth = 3;
-  drawingctx.lineCap = "round";
+  drawingctx.lineCap = 'round';
   drawingctx.lineTo(pos.X / scaleX, pos.Y / scaleY);
-  drawingctx.strokeStyle = "red";
+  drawingctx.strokeStyle = 'red';
   drawingctx.stroke();
 }
 
@@ -99,20 +99,20 @@ async function finishDrawing() {
     .fromPixels(drawing, 1)
     .expandDims()
     .greater(150)
-    .asType("float32");
+    .asType('float32');
 
   [b_add, b_mul, _] = await encoder.predict([frame, obj]);
 
   tf.dispose(_);
 }
 
-drawing.addEventListener("mousedown", (e) => {
+drawing.addEventListener('mousedown', (e) => {
   drawingctx.beginPath();
   painting = true;
   draw(e);
 });
-drawing.addEventListener("mouseup", finishDrawing);
+drawing.addEventListener('mouseup', finishDrawing);
 
-drawing.addEventListener("mousemove", draw);
+drawing.addEventListener('mousemove', draw);
 
 loadModels();
